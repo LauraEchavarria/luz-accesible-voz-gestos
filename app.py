@@ -82,7 +82,7 @@ st.image(image, width=200)
 
 
 st.write("Toca el Botón y habla ")
-st.write(""Enciende las luces" o "Apaga las luces" ")
+st.write("'Enciende las luces' o 'Apaga las luces' ")
 
 stt_button = Button(label=" Inicio ", width=200)
 
