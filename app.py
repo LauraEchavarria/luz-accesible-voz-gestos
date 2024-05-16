@@ -43,7 +43,8 @@ client1.on_message = on_message
 model = load_model('keras_model.h5')
 data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
 
-st.title("Reconocimiento de Imágenes")
+st.title("Luz accesible")
+st.subheader("Reconocimiento de gesto")
 
 img_file_buffer = st.camera_input("Toma una Foto")
 
@@ -67,16 +68,13 @@ if img_file_buffer is not None:
     prediction = model.predict(data)
     print(prediction)
     if prediction[0][0]>0.5:
-      st.header('Izquierda, con Probabilidad: '+str( prediction[0][0]) )
+      st.header('Encender, con Probabilidad: '+str( prediction[0][0]) )
     if prediction[0][1]>0.5:
-      st.header('Arriba, con Probabilidad: '+str( prediction[0][1]))
-    if prediction[0][2]>0.5:
-      st.header('Derecha, con Probabilidad: '+str( prediction[0][2]))
+      st.header('Apagar, con Probabilidad: '+str( prediction[0][1]))
 
 # VOICE CONTROL CODE
 
-st.title("Interfaces Multimodales")
-st.subheader("CONTROL POR VOZ")
+st.subheader("Control por voz")
 
 image = Image.open('voice_ctrl.jpg')
 
@@ -84,6 +82,7 @@ st.image(image, width=200)
 
 
 st.write("Toca el Botón y habla ")
+st.write(""Enciende las luces" o "Apaga las luces" ")
 
 stt_button = Button(label=" Inicio ", width=200)
 
