@@ -20,6 +20,24 @@ import json
 from gtts import gTTS
 from googletrans import Translator
 
+# CONEXION
+
+def on_publish(client,userdata,result):   #create function for callback
+    print("el dato ha sido publicado \n")
+    pass
+
+def on_message(client, userdata, message):
+    global message_received
+    time.sleep(2)
+    message_received=str(message.payload.decode("utf-8"))
+    st.write(message_received)
+
+broker="157.230.214.127"
+port=1883
+client1= paho.Client("FLORENCIA")
+client1.on_message = on_message
+
+
 # TEACHABLE MACHINE
 
 model = load_model('keras_model.h5')
@@ -56,22 +74,6 @@ if img_file_buffer is not None:
       st.header('Derecha, con Probabilidad: '+str( prediction[0][2]))
 
 # VOICE CONTROL CODE
-
-def on_publish(client,userdata,result):   #create function for callback
-    print("el dato ha sido publicado \n")
-    pass
-
-def on_message(client, userdata, message):
-    global message_received
-    time.sleep(2)
-    message_received=str(message.payload.decode("utf-8"))
-    st.write(message_received)
-
-broker="157.230.214.127"
-port=1883
-client1= paho.Client("FLORENCIA")
-client1.on_message = on_message
-
 
 st.title("Interfaces Multimodales")
 st.subheader("CONTROL POR VOZ")
